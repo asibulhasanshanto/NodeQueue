@@ -1,12 +1,13 @@
-const task = function (i) {
-  console.log(`Task ${i} running`);
+const task = function (username, subject, message) {
+  console.log(
+    `Sending email to ${username} with subject ${subject} and message ${message}`
+  );
 };
 
-const handler = (i) => {
-  task(i);
+const handler = (data) => {
+  task(data.username, data.subject, data.message);
 };
 
 module.exports = {
-  task,
   handler,
 };

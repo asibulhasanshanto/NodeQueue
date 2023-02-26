@@ -1,6 +1,6 @@
 const { Worker, QueueEvents } = require("bullmq");
 const redisConnection = { host: "localhost", port: 6379 };
-const { handler, task } = require("./task.js");
+const { handler } = require("./task.js");
 
 const queueEvents = new QueueEvents("my-queue", {
   connection: redisConnection,
@@ -30,7 +30,7 @@ const worker = new Worker(
   "my-queue",
   async (job) => {
     // console.log(job.data);
-    await handler(job.data.iteration);
+    await handler(job.data);
   },
   { connection: redisConnection }
 );
